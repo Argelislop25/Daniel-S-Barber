@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniels Barber | Premium Grooming</title>
+    
+    <!-- Google Fonts: Syne (Headings) & Manrope (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Modern & Minimalist Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Syne', 'sans-serif'],
+                        body: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#111315',   // Deep Obsidian
+                            light: '#F4F2ED',  // Warm Oat/Alabaster
+                            accent: '#38504B', // Muted Deep Sage
+                            sand: '#E6E2D8'    // Soft Sand
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom CSS for Smooth Scrolling & Micro-interactions */
+        body {
+            background-color: #F4F2ED;
+            color: #111315;
+            overflow-x: hidden;
+        }
+        
+        /* Typography Polish */
+        h1, h2, h3, h4, .font-heading {
+            letter-spacing: -0.03em;
+        }
+
+        /* Image Overlays for Cinematic Feel */
+        .img-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+        .img-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(17, 19, 21, 0.1);
+            transition: background 0.5s ease;
+        }
+        .img-overlay:hover::after {
+            background: rgba(17, 19, 21, 0.0);
+        }
+        .img-overlay img {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .img-overlay:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Fade-up Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+
+        /* Custom input styles */
+        .input-minimal {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #111315;
+            border-radius: 0;
+            padding: 12px 0;
+            font-family: 'Manrope', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        .input-minimal:focus {
+            outline: none;
+            border-color: #38504B;
+        }
+    </style>
+</head>
+<body class="font-body text-brand-dark antialiased selection:bg-brand-accent selection:text-brand-light">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 mix-blend-difference text-brand-light px-6 py-6 md:px-12 flex justify-between items-center transition-all duration-300" id="navbar">
+
+        <a href="#" class="font-heading font-bold text-xl tracking-tighter uppercase">Daniel ' s</a>
+        <div class="hidden md:flex gap-8 font-medium text-sm tracking-wide">
+            <a href="#about" class="hover:opacity-70 transition-opacity">Filosofía</a>
+            <a href="#services" class="hover:opacity-70 transition-opacity">Servicios</a>
+            <a href="#work" class="hover:opacity-70 transition-opacity">Atelier</a>
+            <a href="#contact" class="hover:opacity-70 transition-opacity">Contacto</a>
+        </div>
+        <a href="#contact" class="hidden md:inline-block border border-brand-light px-5 py-2 rounded-full text-sm hover:bg-brand-light hover:text-brand-dark transition-colors duration-300">
+            Reservar
+        </a>
+        <button class="md:hidden text-2xl"><i class="ph ph-list"></i></button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-end pb-24 md:pb-32 px-6 md:px-12">
+        <div class="absolute inset-0 z-[-1]">
+            <!-- Placeholder for a high-quality, moody aesthetic image (e.g., a blurred barbershop detail or minimalist architecture) -->
+            <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070&auto=format&fit=crop" alt="Hero Background" class="w-full h-full object-cover filter brightness-[0.85] grayscale-[20%]" />
+        </div>
+        <div class="w-full max-w-5xl mx-auto text-brand-light reveal active">
+            <p class="uppercase tracking-widest text-sm mb-4 opacity-80">Grooming Contemporáneo</p>
+            <h1 class="font-heading text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9] mb-8">
+                LA NUEVA <br> ESTÉTICA.
+            </h1>
+            <div class="flex flex-col md:flex-row gap-6 md:items-center">
+                <a href="#contact" class="bg-brand-light text-brand-dark px-8 py-4 rounded-full font-medium text-center hover:bg-brand-sand transition-colors duration-300">
+                    Agenda tu cita
+                </a>
+                <p class="max-w-xs text-sm opacity-80 border-l border-brand-light/30 pl-4">
+                    Servicio premium en estudio y a domicilio por Ricardo Bermudez.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 md:py-32 px-6 md:px-12 bg-brand-light">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">MÁS QUE <br> UN CORTE.</h2>
+                <p class="text-lg md:text-xl text-brand-dark/70 mb-6 leading-relaxed">
+                    Soy Ricardo Bermudez (Daniel'S). Con más de 3 años de experiencia profesional, he redefinido el concepto del cuidado masculino. No es solo técnica; es arquitectura facial, atención al detalle y un momento de pausa en tu día.
+                </p>
+                <p class="text-brand-dark/70 mb-8 leading-relaxed">
+                    Mi enfoque se basa en entender tu estructura, tu estilo de vida y crear una imagen que proyecte tu mejor versión, ya sea en nuestro estudio D1 o en la comodidad de tu espacio.
+                </p>
+                <video src="/Fotos&videos/daniel recortando.mp4" alt="Ricardo Bermudez" class="w-full max-w-sm h-auto rounded-lg grayscale img-overlay hidden md:block" autoplay loop muted></video>
+            </div>
+            <div class="img-overlay rounded-2xl overflow-hidden h-[60vh] reveal delay-100">
+                <img src="/Fotos&videos/dos rayas.jpeg" alt="Detalle de corte" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 md:py-32 px-6 md:px-12 bg-brand-dark text-brand-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                <div>
+                    <p class="uppercase tracking-widest text-brand-accent text-sm mb-4">El Menú</p>
+                    <h2 class="font-heading text-4xl md:text-6xl font-bold">SERVICIOS</h2>
+                </div>
+                <p class="text-sm opacity-60 mt-4 md:mt-0">* Todos los precios incluyen taxes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12">
+                <!-- Service 1 -->
+                <div class="group border-b border-brand-light/20 pb-6 reveal">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-heading text-2xl font-bold group-hover:text-brand-accent transition-colors">Corte Clásico / Moderno</h3>
+                        <span class="font-heading text-xl">$40</span>
+                    </div>
+                    <p class="text-brand-light/60 text-sm">Asesoría de imagen, corte a tijera/máquina, perfilado y peinado premium.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="group border-b border-brand-light/20 pb-6 reveal delay-100">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-heading text-2xl font-bold group-hover:text-brand-accent transition-colors">Corte + Barba</h3>
+                        <span class="font-heading text-xl">$50</span>
+                    </div>
+                    <p class="text-brand-light/60 text-sm">El ritual completo. Esculpido de barba, toalla caliente y productos hidratantes.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group border-b border-brand-light/20 pb-6 reveal">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-heading text-2xl font-bold group-hover:text-brand-accent transition-colors">Diseño de Barba</h3>
+                        <span class="font-heading text-xl">$30</span>
+                    </div>
+                    <p class="text-brand-light/60 text-sm">Alineación geométrica, rebaje y tratamiento de aceites esenciales.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group border-b border-brand-light/20 pb-6 reveal delay-100">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-heading text-2xl font-bold group-hover:text-brand-accent transition-colors">Corte Infantil</h3>
+                        <span class="font-heading text-xl">$30</span>
+                    </div>
+                    <p class="text-brand-light/60 text-sm">Estilo y paciencia. Un servicio adaptado para los más pequeños.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modalities Section -->
+    <section class="py-24 px-6 md:px-12 bg-brand-sand">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+            <!-- D1 -->
+            <div class="bg-brand-light p-10 md:p-16 rounded-3xl hover:shadow-xl transition-shadow duration-500">
+                <div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center text-brand-light mb-8">
+                    <i class="ph ph-storefront text-2xl"></i>
+                </div>
+                <h3 class="font-heading text-3xl font-bold mb-4">En el Estudio (D1)</h3>
+                <p class="text-brand-dark/70 mb-6">Vive la experiencia completa en nuestras instalaciones. Un ambiente diseñado para la relajación, buena música y resultados impecables.</p>
+                <p class="font-medium text-sm uppercase tracking-wide">1708 Boul des Laurentides, Laval</p>
+            </div>
+
+            <!-- A Domicilio -->
+            <div class="bg-brand-dark text-brand-light p-10 md:p-16 rounded-3xl hover:shadow-xl transition-shadow duration-500">
+                <div class="w-12 h-12 bg-brand-light rounded-full flex items-center justify-center text-brand-dark mb-8">
+                    <i class="ph ph-car-profile text-2xl"></i>
+                </div>
+                <h3 class="font-heading text-3xl font-bold mb-4">Atelier Móvil</h3>
+                <p class="text-brand-light/70 mb-6">El servicio premium llevado a la puerta de tu casa u oficina. Discreción, comodidad y la misma calidad sin desplazarte.</p>
+                <p class="font-medium text-sm text-brand-accent uppercase tracking-wide">* Precio base + costo por desplazamiento</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Work -->
+    <section id="work" class="py-24 px-6 md:px-12 bg-brand-light">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold text-center mb-16 reveal">NUESTRO TRABAJO</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 reveal delay-100">
+                <div class="img-overlay rounded-xl overflow-hidden aspect-[4/5]">
+                    <img src="/Fotos&videos/Tatto en el cuello.jpeg" class="w-full h-full object-cover" alt="Fade Cut">
+                </div>
+                <div class="img-overlay rounded-xl overflow-hidden aspect-[4/5] md:mt-12">
+                    <img src="/Fotos&videos/moreno con trenzas.jpeg" class="w-full h-full object-cover" alt="Beard Trim">
+                </div>
+                <div class="img-overlay rounded-xl overflow-hidden aspect-[4/5] col-span-2 md:col-span-1">
+                    <img src="/Fotos&videos/Foto1.jpeg" class="w-full h-full object-cover" alt="Modern Styling">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-brand-dark text-brand-light overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 reveal">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center">LO QUE DICEN <br><span class="text-brand-accent">NUESTROS CLIENTES</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="border border-brand-light/20 p-8 rounded-2xl relative">
+                    <i class="ph-fill ph-quotes text-4xl text-brand-accent/30 absolute top-6 right-6"></i>
+                    <p class="text-sm text-brand-light/80 mb-6 leading-relaxed">"Daniels no solo corta el pelo, entiende lo que necesitas. El nivel de detalle en el fade es impresionante. El mejor de Laval, sin duda."</p>
+                    <p class="font-heading font-bold">— Carlos M.</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="border border-brand-light/20 p-8 rounded-2xl relative bg-brand-light/5">
+                    <i class="ph-fill ph-quotes text-4xl text-brand-accent/30 absolute top-6 right-6"></i>
+                    <p class="text-sm text-brand-light/80 mb-6 leading-relaxed">"Pedí el servicio a domicilio por primera vez y la experiencia fue 10/10. Llegó puntual, súper higiénico y el resultado final increíble."</p>
+                    <p class="font-heading font-bold">— Alejandro T.</p>
+                </div>
+                <!-- Add Review CTA -->
+                <div class="border border-dashed border-brand-light/30 p-8 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer hover:bg-brand-light/5 transition-colors">
+                    <i class="ph ph-plus-circle text-3xl text-brand-accent mb-4"></i>
+                    <p class="font-medium text-sm">Deja tu comentario</p>
+                    <p class="text-xs text-brand-light/50 mt-2">Ayúdanos a seguir mejorando.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking & Contact Section -->
+    <section id="contact" class="py-24 px-6 md:px-12 bg-brand-light">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Contact Info -->
+            <div class="reveal">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-8">HAZ TU RESERVA.</h2>
+                
+                <div class="space-y-8 mb-12">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-wider text-brand-dark/50 mb-2">Ubicación (D1)</p>
+                        <p class="font-medium text-lg">1708 Boul des Laurentides<br>Laval QC H7M 2P5, Canada</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-wider text-brand-dark/50 mb-2">Horarios</p>
+                        <p class="font-medium">Mié - Vie: 10:00 am - 2:00 pm</p>
+                        <p class="font-medium">Sábado: 10:00 am - 5:00 pm</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-wider text-brand-dark/50 mb-2">Contacto Directo</p>
+                        <p class="font-heading text-2xl font-bold">438 225-5779</p>
+                    </div>
+                </div>
+
+                <!-- Big WhatsApp Button -->
+                <a href="https://wa.me/14382255779" target="_blank" class="inline-flex items-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-full font-medium hover:bg-[#20b858] transition-colors shadow-lg shadow-[#25D366]/20 w-full md:w-auto justify-center">
+                    <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+                    Reservar por WhatsApp
+                </a>
+            </div>
+
+            <!-- Booking Form Concept -->
+            <div class="bg-brand-sand p-8 md:p-12 rounded-3xl reveal delay-100">
+                <h3 class="font-heading text-2xl font-bold mb-8">Formulario Rápido</h3>
+                <form class="space-y-6" onsubmit="event.preventDefault();">
+                    <div>
+                        <input type="text" placeholder="Tu Nombre" class="w-full input-minimal text-brand-dark placeholder-brand-dark/50">
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <input type="text" placeholder="Fecha deseada" class="w-full input-minimal text-brand-dark placeholder-brand-dark/50" onfocus="(this.type='date')">
+                        <select class="w-full input-minimal text-brand-dark/50 bg-transparent">
+                            <option value="" disabled selected>Modalidad</option>
+                            <option value="d1">En D1</option>
+                            <option value="domicilio">A Domicilio</option>
+                        </select>
+                    </div>
+                    <div>
+                        <textarea placeholder="Comentarios adicionales (Ej. Quiero un degradado medio...)" rows="3" class="w-full input-minimal text-brand-dark placeholder-brand-dark/50 resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-dark text-brand-light py-4 rounded-xl font-medium mt-4 hover:bg-brand-accent transition-colors">
+                        Enviar Solicitud
+                    </button>
+                    <p class="text-xs text-center text-brand-dark/50 mt-4">* Nos comunicaremos contigo para confirmar la cita.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-brand-light py-12 px-6 border-t border-brand-light/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <h2 class="font-heading font-bold text-2xl tracking-tighter uppercase">Daniel's Barber</h2>
+            
+            <div class="flex gap-6">
+                <a href="https://instagram.com/ricardobermidez" target="_blank" class="hover:text-brand-accent transition-colors">
+                    <i class="ph ph-instagram-logo text-2xl"></i>
+                </a>
+                <a href="https://tiktok.com/@danielbermudez14" target="_blank" class="hover:text-brand-accent transition-colors">
+                    <i class="ph ph-tiktok-logo text-2xl"></i>
+                </a>
+               
+            </div>
+            
+            <p class="text-sm opacity-50">© 2026 Daniel's Barber. Creado para destacar.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Scroll Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for fade-up animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Sticky Navbar logic (Optional UX enhancement)
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-4', 'bg-brand-dark/90', 'backdrop-blur-md');
+                    navbar.classList.remove('py-6', 'mix-blend-difference');
+                } else {
+                    navbar.classList.add('py-6', 'mix-blend-difference');
+                    navbar.classList.remove('py-4', 'bg-brand-dark/90', 'backdrop-blur-md');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
